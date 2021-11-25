@@ -30,7 +30,7 @@
             variable_max_x=variable_max_x+10;
             Render.lookAt(render, {
                 min: { x: variable_min, y: variable_min },
-                max: { x: variable_max_x, y: variable_max}
+                max: { x: variable_max_x, y: variable_max_y}
             });
         }
         var right=document.getElementById('right');
@@ -39,7 +39,7 @@
             variable_max_x=variable_max_x-10;
             Render.lookAt(render, {
                 min: { x: variable_min, y: variable_min },
-                max: { x: variable_max_x, y: variable_max}
+                max: { x: variable_max_x, y: variable_max_y}
             });
         }
         var zoom_in=document.getElementById('zoom-in');
