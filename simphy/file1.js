@@ -1,3 +1,4 @@
+// import Matter from "matter-js";
 var Example = Example || {};
 
 Example.car = function() {
@@ -19,8 +20,8 @@ Example.car = function() {
         element: document.body,
         engine: engine,
         options: {
-            width: 800,
-            height: 600,
+            width: window.innerWidth-25,
+            height: window.innerHeight-25,
             showAngleIndicator: true,
             showCollisions: true
         }
@@ -32,7 +33,7 @@ Example.car = function() {
     var runner = Runner.create();
     Runner.run(runner, engine);
 
-    // add bodies
+    //add bodies
     Composite.add(world, [
         // walls
         Bodies.rectangle(400, 0, 800, 50, { isStatic: true }),
@@ -72,22 +73,44 @@ Example.car = function() {
     render.mouse = mouse;
 
     // fit the render viewport to the scene
+    var variable_max=800;
+    var variable_min=0;
+    document.onkeydown=fun;
+    function fun(ev){
+        if(ev.code=="ArrowRight"){
+            variable_max=variable_max+10;
+        }
+        if(ev.code=="ArrowUp"){
+            variable_min=variable_min+10;
+        }
+        if(ev.code=="ArrowLeft"){
+            variable_max=variable_max-10;
+        }
+        if(ev.code=="ArrowDown"){
+            variable_min=variable_min-10;
+        }
+
+        Render.lookAt(render, {
+            min: { x: variable_min, y: variable_min },
+            max: { x: variable_max, y: variable_max }
+        });
+    }
     Render.lookAt(render, {
-        min: { x: 0, y: 0 },
-        max: { x: 800, y: 600 }
+        min: { x: variable_min, y: variable_min },
+        max: { x: variable_max, y: variable_max }
     });
 
-    // context for MatterTools.Demo
-    return {
-        engine: engine,
-        runner: runner,
-        render: render,
-        canvas: render.canvas,
-        stop: function() {
-            Matter.Render.stop(render);
-            Matter.Runner.stop(runner);
-        }
-    };
+    //context for MatterTools.Demo
+    // return {
+    //     engine: engine,
+    //     runner: runner,
+    //     render: render,
+    //     canvas: render.canvas,
+    //     stop: function() {
+    //         Matter.Render.stop(render);
+    //         Matter.Runner.stop(runner);
+    //     }
+    // };
 };
 
 Example.car.title = 'Car';
@@ -167,7 +190,7 @@ Example.car.car = function(xx, yy, width, height, wheelSize) {
 
 Example.car();
 
-// Example.car.car(30,20,20,10,10);
-if (typeof module !== 'undefined') {
-    module.exports = Example.car;
-}
+// // Example.car.car(30,20,20,10,10);
+// if (typeof module !== 'undefined') {
+//     module.exports = Example.car;
+// }

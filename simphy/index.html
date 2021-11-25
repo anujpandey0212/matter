@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #line{
+            border-bottom: 2px solid #cfcdca;
+            width: 99%;
+            z-index: 2;
+            position:fixed;
+            right: 17px;
+            bottom: 8%;
+        }
+        .bottom{
+            z-index: 2;
+            font-size: 100%;
+            position: fixed;
+            color: #cfcdca;
+            right: 17px;
+            bottom: 4%;
+        }
+        #left{
+            right: 20%;
+        }
+        #right{
+            right: 18%;
+        }
+        #up{
+            right: 16%;
+        }
+        #down{
+            right: 14%;
+        }
+        #zoom-in{
+            right: 12%;
+        }
+        #zoom-out{
+            right: 10%;
+        }
+
+    
+    </style>
+</head>
+<body>
+    <div id="line"></div>
+    <div id="right" class="bottom">→</div>
+    <div id="left" class="bottom">←</div>
+    <div id="up" class="bottom">↑</div>
+    <div id="down" class="bottom">↓</div>
+    <div id="zoom-in" class="bottom">+</div>
+    <div id="zoom-out" class="bottom">-</div>
+</body>
+
+<script src="../node_modules/matter-js/build/matter.js"></script>
+ <!-- <script src="./file1.js"> </script> -->
+<script src="./player1.js"></script>
+<script src="./zoom.js"></script>
+</html>
