@@ -1,4 +1,4 @@
-var variable_max=800;
+        var variable_max=800;
         var variable_min=0;
         document.onkeydown=fun;
         var zoom_in=document.getElementById('zoom-in');
@@ -24,12 +24,14 @@ var variable_max=800;
         function fun(ev){
             if(ev.code=="ArrowRight"){
                 variable_max=variable_max+10;
+                variable_min=variable_min+10;
             }
             if(ev.code=="ArrowUp"){
                 variable_min=variable_min+10;
             }
             if(ev.code=="ArrowLeft"){
                 variable_max=variable_max-10;
+                variable_min=variable_min-10;
             }
             if(ev.code=="ArrowDown"){
                 variable_min=variable_min-10;

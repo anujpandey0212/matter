@@ -5,7 +5,7 @@
   "main": "matter.js",
   "type": "module",
   "scripts": {
-    "start": "node file1.js"
+    "start": "node simphy/index.html"
   },
   "author": "",
   "license": "ISC",
