@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+        body{
+           background-color:  #006ba1;
+        }
+       #jxgbox{
+           margin-left: 100px;
+           margin-top: 100px;
+           margin-bottom: 40px;
+       }
+       h1,h2{
+        font-family: 'Montserrat', sans-serif;
+        margin-left: 50px;
+        color: white;
+       }
+       h2{
+           margin-top: 50px;
+       }
+       #heading{
+        font-size: 22px;
+           font-family: 'Montserrat', sans-serif;
+           margin-left: 50px;
+           margin-right: 300px;
+           margin-top: 40px;
+           color: white;
+       }
+       .defination{
+           font-size: 18px;
+           font-family: 'Montserrat', sans-serif;
+           margin-left: 50px;
+           margin-right: 300px;
+           margin-top: 40px;
+           color: white;
+       }
+       .line{
+        width: 400px;
+        height: 1px;
+        margin-left: 53px;
+        border-bottom: 1px solid white;
+        position: absolute;
+       }
+       img{
+           margin-left: 650px;
+       }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <img src="./assets//shikhar.png">
+    <h1>Circle Terminology</h1>
+    <div class="line"></div>
+    <p id="heading">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, necessitatibus tempore. Reiciendis eum quidem id animi fugiat. Et, neque corporis labore maiores saepe alias odio nam modi. Est, quaerat odit!</p>
+    <h2>
+        Radius
+    </h2>
+    <div class="line"></div>
+    <p class="defination">n classical geometry, a radius of a circle or sphere is any of the line segments from its center to its perimeter, and in more modern usage, it is also their length. The name comes from the Latin radius, meaning ray but also the spoke of a chariot wheel. The plural of radius can be either radii (from the Latin plural) or the conventional English plural radiuses. The typical abbreviation and mathematical variable name for radius is r. By extension, the diameter d is defined as twice the radius
+    </p>
+    <h2>Secant</h2>
+    <div class="line"></div>
+    <p class="defination">In geometry, a secant is a line that intersects a curve at a minimum of two distinct points. The word secant comes from the Latin word secare, meaning to cut. In the case of a circle, a secant intersects the circle at exactly two points. A chord is the line segment determined by the two points, that is, the interval on the secant whose ends are the two points.</p>
+    <h2>Chord</h2>
+    <div class="line"></div>
+    <p class="defination">
+        A chord of a circle is a straight line segment whose endpoints both lie on a circular arc. The infinite line extension of a chord is a secant line, or just secant. More generally, a chord is a line segment joining two points on any curve, for instance, an ellipse. A chord that passes through a circle's center point is the circle's diameter. The word chord is from the Latin chorda meaning bowstring.
+    </p>
+    <h2>Tangent</h2>
+    <div class="line"></div>
+    <p class="defination">
+        In geometry, the tangent line (or simply tangent) to a plane curve at a given point is the straight line that "just touches" the curve at that point. Leibniz defined it as the line through a pair of infinitely close points on the curve.[1] More precisely, a straight line is said to be a tangent of a curve y = f(x) at a point x = c if the line passes through the point (c, f(c)) on the curve and has slope f'(c), where f' is the derivative of f. A similar definition applies to space curves and curves in n-dimensional Euclidean space.
+    </p>
+    
+    <div id="jxgbox" class="jxgbox" style="width:800px; height:600px;"></div>
+</body>
+<!-- <script src="./node_modules/matter-js/build/matter.js"></script> -->
+<script type="text/javascript" charset="UTF-8"
+ src="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraphcore.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraph.css" />
+<script>
+   
+    var brd, k;
+JXG.Options.text.useMathJax = true;
+brd = JXG.JSXGraph.initBoard('jxgbox', {boundingbox:[-5,5,5,-5], axis:true, showNavigation:false, showCopyright:false,keepAspectRatio:true});
+var p=brd.create('point',[0,0],{name:'A'});
+
+circle1=brd.create("circle",[p,3],{strokewidth:2});
+
+var show_radius = brd.create('checkbox', [4, 4, 'Show Radius']);
+var show_secant = brd.create('checkbox',[4,3.5,'Show Secant']);
+var show_chord = brd.create('checkbox',[4,3,'Show Chord']);
+var show_tangent=brd.create('checkbox',[4,2.5,'Show Tangent']);
+
+show_radius.setAttribute({fixed:true});
+show_secant.setAttribute({fixed:true});
+show_tangent.setAttribute({fixed:true});
+show_chord.setAttribute({fixed:true});
+
+JXG.addEvent(show_radius.rendNodeCheckbox, 'change', function() {
+    if (this.Value()) {
+        var point = brd.create("point",[3,0],{name:"B"});
+        var radius=brd.create('segment',[p,point],{name:"radius"});
+        console.log(point.getName())
+
+    } else {
+    
+    brd.removeObject('radius');
+    brd.removeObject('B')
+     
+    }
+},show_radius);
+
+JXG.addEvent(show_secant.rendNodeCheckbox,'change',function(){
+    if(this.Value()){
+        var secant_point_1=brd.create('point',[0,2],{name:"C"});
+        var secant_point_2=brd.create('point',[-2,0],{name:"D"});
+        var secant_line=brd.create('line',[secant_point_1,secant_point_2],{name:"secant"});
+    }
+    else{
+        brd.removeObject('C');
+        brd.removeObject('D');
+        brd.removeObject('secant');
+    }
+},show_secant);
+
+JXG.addEvent(show_tangent.rendNodeCheckbox,'change',function(){
+if(this.Value()){
+    var g1 = brd.create('glider', [1.88,-2.34, circle1],{name:"glider1"});
+    var t1 = brd.create('tangent', [g1],{name:"tangent"});
+    var another_tangent=brd.create('checkbox',[4,2,"show tangent 2"],{name:"checkbox1"});
+    another_tangent.setAttribute({fixed:true});
+   
+
+}
+else{
+    brd.removeObject("glider1");
+    brd.removeObject("tangent");
+    brd.removeObject("checkbox1");
+
+    brd.removeObject("glider2");
+    brd.removeObject("tangent2");
+
+}
+
+JXG.addEvent(another_tangent.rendNodeCheckbox,'change',function(){
+if(this.Value()){
+    var g2 = brd.create('glider',[2.05,2.19,circle1],{name:"glider2"});
+    var t2 =brd.create('tangent',[g2],{name:"tangent2"});
+}
+else{
+    brd.removeObject("glider2");
+    brd.removeObject("tangent2");
+}
+
+},another_tangent);
+
+},show_tangent);
+
+JXG.addEvent(show_chord.rendNodeCheckbox,'change',function(){
+
+    if(this.Value()){
+        var chord_point_1=brd.create('point',[-1.43,2.64],{name:'E'});
+        var chord_point_2=brd.create('point',[3,0],{name:'F'});
+        var chord=brd.create('segment',[chord_point_1,chord_point_2],{name:'chord'});
+        var diameter=brd.create('checkbox',[6,3,'Diameter'],{name:'diameter'});
+        diameter.setAttribute({fixed:true});
+    }
+
+    else{
+        brd.removeObject('E');
+        brd.removeObject('F');
+        brd.removeObject('diameter');
+        brd.removeObject('G');
+        brd.removeObject('H');
+        brd.removeObject('dia');
+    }
+
+    JXG.addEvent(diameter.rendNodeCheckbox,'change',function(){
+
+        if(this.Value()){
+            var d_point_1=brd.create('point',[0,3],{name:'G'});
+            var d_point_2=brd.create('point',[0,-3],{name:'H'});
+            var dia=brd.create('segment',[d_point_1,d_point_2],{name:'dia'});
+        }
+
+        else{
+            brd.removeObject('G');
+            brd.removeObject('H');
+            brd.removeObject('dia');
+        }
+
+    },diameter)
+    
+},show_chord);
+
+</script>
+
+</html>
